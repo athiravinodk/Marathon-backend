@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "+2GypYBi4SKbs8HsmLr65jk9+l/eHWCFXa9sUX0MVv0=",
+  "Source": "Marathon-backend",
+  "BasePath": "_content/Marathon-backend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
