@@ -1,6 +1,5 @@
 using Marathon_backend.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +15,7 @@ var connectionString = builder.Configuration.GetConnectionString("ConnectionStri
 builder.Services.AddDbContext<UserDbContext>(options => options.UseSqlServer(connectionString));
 
 var app = builder.Build();
-
+app.UseRouting();
 // Configure endpoints
 app.UseEndpoints(endpoints =>
 {
