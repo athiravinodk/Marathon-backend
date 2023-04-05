@@ -9,13 +9,13 @@ namespace Marathon_backend.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly UserDbContext _context;
+        UserDbContext dbconnection;
         public UserController(UserDbContext UserDbContext)
         {
-            _context = UserDbContext;
+            dbconnection = UserDbContext;
         }
 
-        [HttpPost("add_user")]
+        [HttpPost]
         public IActionResult AddUser([FromBody] UserModel userObj)
         {
             if (userObj == null)
@@ -24,12 +24,12 @@ namespace Marathon_backend.Controllers
             }
             else
             {
-                _context.UserModels.Add(userObj);
-                _context.SaveChanges();
+                dbconnection.UserModels.Add(userObj);
+                dbconnection.SaveChanges();
                 return Ok(new
                 {
                     StatusCode = 200,
-                    Message = " user Created  successfully"
+                    Message = " user added  successfully"
                 });
             }
         }
