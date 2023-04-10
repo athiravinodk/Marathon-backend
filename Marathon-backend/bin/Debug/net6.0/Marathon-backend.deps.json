@@ -12,6 +12,9 @@
           "Microsoft.EntityFrameworkCore": "7.0.4",
           "Microsoft.EntityFrameworkCore.Relational": "7.0.4",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.4",
+          "MySql.Data": "8.0.32.1",
+          "MySql.EntityFrameworkCore": "7.0.0",
+          "MySqlConnector": "2.2.5",
           "Pomelo.EntityFrameworkCore.MySql": "7.0.0",
           "Swashbuckle.AspNetCore": "6.2.3",
           "System.Configuration.ConfigurationManager": "7.0.0",
@@ -500,6 +503,19 @@
             "rid": "win-x64",
             "assetType": "native",
             "fileVersion": "4.1.0.0"
+          }
+        }
+      },
+      "MySql.EntityFrameworkCore/7.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.4",
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.4",
+          "MySql.Data": "8.0.32.1"
+        },
+        "runtime": {
+          "lib/net6.0/MySql.EntityFrameworkCore.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.0.0.0"
           }
         }
       },
@@ -1063,6 +1079,13 @@
       "sha512": "sha512-K5WkZz8hkiHyKSnEON5AER+oMxmwhRrSAy6/a7XnfWpytn8EyYLCFWe0lDNZqZJ/w79P1Qtw0TZvf3kP0a1fbg==",
       "path": "mysql.data/8.0.32.1",
       "hashPath": "mysql.data.8.0.32.1.nupkg.sha512"
+    },
+    "MySql.EntityFrameworkCore/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-z1XBdnVcfs1gayd5byjIVP6K1ayxE7iXbqsCfQV6CTi0hp73py+fuiYi2X2JWMg5mrafcWrWDrcX/4omM6Vrcg==",
+      "path": "mysql.entityframeworkcore/7.0.0",
+      "hashPath": "mysql.entityframeworkcore.7.0.0.nupkg.sha512"
     },
     "MySqlConnector/2.2.5": {
       "type": "package",

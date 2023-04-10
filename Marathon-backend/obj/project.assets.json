@@ -804,6 +804,24 @@
           }
         }
       },
+      "MySql.EntityFrameworkCore/7.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.0",
+          "Microsoft.EntityFrameworkCore.Relational": "7.0.0",
+          "MySql.Data": "8.0.32"
+        },
+        "compile": {
+          "lib/net6.0/MySql.EntityFrameworkCore.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/MySql.EntityFrameworkCore.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "MySqlConnector/2.2.5": {
         "type": "package",
         "compile": {
@@ -2440,6 +2458,21 @@
         "runtimes/win-x64/native/krbcc64.dll"
       ]
     },
+    "MySql.EntityFrameworkCore/7.0.0": {
+      "sha512": "z1XBdnVcfs1gayd5byjIVP6K1ayxE7iXbqsCfQV6CTi0hp73py+fuiYi2X2JWMg5mrafcWrWDrcX/4omM6Vrcg==",
+      "type": "package",
+      "path": "mysql.entityframeworkcore/7.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net6.0/MySql.EntityFrameworkCore.dll",
+        "lib/net6.0/MySql.EntityFrameworkCore.xml",
+        "lib/net7.0/MySql.EntityFrameworkCore.dll",
+        "lib/net7.0/MySql.EntityFrameworkCore.xml",
+        "mysql.entityframeworkcore.7.0.0.nupkg.sha512",
+        "mysql.entityframeworkcore.nuspec"
+      ]
+    },
     "MySqlConnector/2.2.5": {
       "sha512": "6sinY78RvryhHwpup3awdjYO7d5hhWahb5p/1VDODJhSxJggV/sBbYuKK5IQF9TuzXABiddqUbmRfM884tqA3Q==",
       "type": "package",
@@ -3719,6 +3752,9 @@
       "Microsoft.EntityFrameworkCore >= 7.0.4",
       "Microsoft.EntityFrameworkCore.Relational >= 7.0.4",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.4",
+      "MySql.Data >= 8.0.32.1",
+      "MySql.EntityFrameworkCore >= 7.0.0",
+      "MySqlConnector >= 2.2.5",
       "Pomelo.EntityFrameworkCore.MySql >= 7.0.0",
       "Swashbuckle.AspNetCore >= 6.2.3",
       "System.Configuration.ConfigurationManager >= 7.0.0",
@@ -3787,6 +3823,18 @@
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[7.0.4, )"
+          },
+          "MySql.Data": {
+            "target": "Package",
+            "version": "[8.0.32.1, )"
+          },
+          "MySql.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[7.0.0, )"
+          },
+          "MySqlConnector": {
+            "target": "Package",
+            "version": "[2.2.5, )"
           },
           "Pomelo.EntityFrameworkCore.MySql": {
             "target": "Package",

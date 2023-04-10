@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Udusw094Gt50q2McT+1jbFrNOdvlmY9bKFEP/yoD8lTdqTeYiBpZRLwkkaIRykkzbCD3gnQzHawpTfMwKaUCAQ==",
+  "dgSpecHash": "YXH6Uc0bGf0YLCUT15MlBfhvOhpv/tbrZDjVv4l4G/whLkxXklpN/Fi8sQt4F73tR2DNZLz4DnivY7FE7dl2gg==",
   "success": true,
   "projectFilePath": "C:\\Users\\USER\\Documents\\Marathon\\Marathon-reg-backend\\Marathon-backend\\Marathon-backend\\Marathon-backend.csproj",
   "expectedPackageFiles": [
@@ -45,6 +45,7 @@
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.win32.systemevents\\7.0.0\\microsoft.win32.systemevents.7.0.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\mysql.data\\8.0.32.1\\mysql.data.8.0.32.1.nupkg.sha512",
+    "C:\\Users\\USER\\.nuget\\packages\\mysql.entityframeworkcore\\7.0.0\\mysql.entityframeworkcore.7.0.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\mysqlconnector\\2.2.5\\mysqlconnector.2.2.5.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\pomelo.entityframeworkcore.mysql\\7.0.0\\pomelo.entityframeworkcore.mysql.7.0.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",

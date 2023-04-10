@@ -2,6 +2,8 @@
 using Marathon_backend.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace Marathon_backend.Controllers
 {
@@ -9,29 +11,35 @@ namespace Marathon_backend.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        UserDbContext dbconnection;
+        private readonly UserDbContext Dbcontext;
         public UserController(UserDbContext UserDbContext)
         {
-            dbconnection = UserDbContext;
+            this.Dbcontext = UserDbContext;
         }
 
-        [HttpPost]
-        public IActionResult AddUser([FromBody] UserModel userObj)
+        [HttpGet("get")]
+        public IEnumerable<string> Get()
         {
-            if (userObj == null)
-            {
-                return BadRequest();
-            }
-            else
-            {
-                dbconnection.UserModels.Add(userObj);
-                dbconnection.SaveChanges();
-                return Ok(new
-                {
-                    StatusCode = 200,
-                    Message = " user added  successfully"
-                });
-            }
+            return new string[] { "value1", "value2" };
         }
+        [HttpPost("add")]
+             public void Post([FromBody] string value) { }
+        public async Task<HttpStatusCode> Add(UserModel User)
+        {
+            var entity = new UserModel()
+            {
+                Id = User.Id,
+                FirstName = User.FirstName,
+                LastName = User.LastName,
+                Age = User.Age,
+                Gender = User.Gender,
+                Category = User.Category,
+                ContactNumber = User.ContactNumber,
+            };
+            Dbcontext.UserModels.Add(entity);
+            await Dbcontext.SaveChangesAsync();
+            return HttpStatusCode.Created;
+        }
+
     }
 }

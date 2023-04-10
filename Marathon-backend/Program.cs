@@ -2,25 +2,19 @@ using Marathon_backend.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using MySql.EntityFrameworkCore.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
-//builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
 
-// Configure database context
-var connectionString = builder.Configuration.GetConnectionString("ConnectionString");
-builder.Services.AddDbContext<UserDbContext>(options => options.UseSqlServer(connectionString));
-
-
-
-
 var app = builder.Build();
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -41,4 +35,11 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+
+builder.Services.AddEntityFrameworkMySQL()
+    .AddDbContext<UserDbContext>(options =>
+    {
+        options.UseMySQL(builder.Configuration.GetConnectionString("ConnectionString"));
+    });
+builder.Services.AddControllers();
 

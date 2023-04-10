@@ -90,3 +90,4 @@ C:\Users\USER\Documents\Marathon\Marathon-reg-backend\Marathon-backend\Marathon-
 C:\Users\USER\Documents\Marathon\Marathon-reg-backend\Marathon-backend\Marathon-backend\obj\Debug\net6.0\Marathon-backend.pdb
 C:\Users\USER\Documents\Marathon\Marathon-reg-backend\Marathon-backend\Marathon-backend\obj\Debug\net6.0\Marathon-backend.genruntimeconfig.cache
 C:\Users\USER\Documents\Marathon\Marathon-reg-backend\Marathon-backend\Marathon-backend\obj\Debug\net6.0\ref\Marathon-backend.dll
+C:\Users\USER\Documents\Marathon\Marathon-reg-backend\Marathon-backend\Marathon-backend\bin\Debug\net6.0\MySql.EntityFrameworkCore.dll
