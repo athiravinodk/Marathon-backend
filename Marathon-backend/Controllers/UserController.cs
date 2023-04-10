@@ -18,12 +18,30 @@ namespace Marathon_backend.Controllers
         }
 
         [HttpGet("get")]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult<List<UserDTO>>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var List = await userDbContext.registered_users.Select(
+                UserModel => new UserDTO
+                {
+                    Id = UserModel.Id,
+                    FirstName = UserModel.FirstName,
+                    LastName = UserModel.LastName,
+                    Age = UserModel.Age,
+                    Gender = UserModel.Gender,
+                    Category = UserModel.Category,
+                    ContactNumber = UserModel.ContactNumber,
+                }
+            ).ToListAsync();
+
+            if (List.Count < 0)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return List;
+            }
         }
-
-
 
         [HttpPost("add")]
         public void Post([FromBody] object value) { }
@@ -39,7 +57,7 @@ namespace Marathon_backend.Controllers
                 Category = UserModel.Category,
                 ContactNumber = UserModel.ContactNumber,
             };
-            userDbContext.UserModels.Add(entity);
+            userDbContext.registered_users.Add(entity);
             await userDbContext.SaveChangesAsync();
             return HttpStatusCode.Created;
         }

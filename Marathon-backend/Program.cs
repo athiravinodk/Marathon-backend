@@ -13,7 +13,6 @@ builder.Services.AddEntityFrameworkMySQL()
 builder.Services.AddControllers();
 
 
-
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddEndpointsApiExplorer();

@@ -12,7 +12,7 @@ namespace Marathon_backend.Entities
             : base(options)
         {
         }
-        public DbSet<UserModel> UserModels { get; set; }
+        public DbSet<UserModel> registered_users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
