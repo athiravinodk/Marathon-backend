@@ -1,5 +1,5 @@
-﻿using Marathon_backend.Data;
-using Marathon_backend.Models;
+﻿using Marathon_backend.DTO;
+using Marathon_backend.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,10 +11,10 @@ namespace Marathon_backend.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly UserDbContext Dbcontext;
+        private readonly UserDbContext userDbContext;
         public UserController(UserDbContext UserDbContext)
         {
-            this.Dbcontext = UserDbContext;
+            this.userDbContext = UserDbContext;
         }
 
         [HttpGet("get")]
@@ -22,22 +22,25 @@ namespace Marathon_backend.Controllers
         {
             return new string[] { "value1", "value2" };
         }
+
+
+
         [HttpPost("add")]
-             public void Post([FromBody] string value) { }
-        public async Task<HttpStatusCode> Add(UserModel User)
+        public void Post([FromBody] object value) { }
+        public async Task<HttpStatusCode> Add(UserDTO UserModel)
         {
             var entity = new UserModel()
             {
-                Id = User.Id,
-                FirstName = User.FirstName,
-                LastName = User.LastName,
-                Age = User.Age,
-                Gender = User.Gender,
-                Category = User.Category,
-                ContactNumber = User.ContactNumber,
+                Id = UserModel.Id,       
+                FirstName = UserModel.FirstName,
+                LastName = UserModel.LastName,
+                Age = UserModel.Age,
+                Gender = UserModel.Gender,
+                Category = UserModel.Category,
+                ContactNumber = UserModel.ContactNumber,
             };
-            Dbcontext.UserModels.Add(entity);
-            await Dbcontext.SaveChangesAsync();
+            userDbContext.UserModels.Add(entity);
+            await userDbContext.SaveChangesAsync();
             return HttpStatusCode.Created;
         }
 
