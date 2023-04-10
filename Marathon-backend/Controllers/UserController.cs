@@ -29,7 +29,7 @@ namespace Marathon_backend.Controllers
                     Age = UserModel.Age,
                     Gender = UserModel.Gender,
                     Category = UserModel.Category,
-                    ContactNumber = UserModel.ContactNumber,
+                    ContactNumber = UserModel.ContactNumber
                 }
             ).ToListAsync();
 
@@ -44,7 +44,6 @@ namespace Marathon_backend.Controllers
         }
 
         [HttpPost("add")]
-        public void Post([FromBody] object value) { }
         public async Task<HttpStatusCode> Add(UserDTO UserModel)
         {
             var entity = new UserModel()
