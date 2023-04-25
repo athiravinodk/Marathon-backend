@@ -4,8 +4,11 @@ using Marathon_backend.Entities;
 using Marathon_backend.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using MySql.Data.MySqlClient;
+using System.Data;
 using System.Net;
 
 namespace Marathon_backend.Controllers
@@ -21,7 +24,7 @@ namespace Marathon_backend.Controllers
         }
 
         [HttpGet("get")]
-         public async Task<ActionResult<List<UserDTO>>> Get()
+        public async Task<ActionResult<List<UserDTO>>> Get()
         {
             ISingleModelResponse<UserDbContext> response = new SingleModelResponse<UserDbContext>();
             try
@@ -43,7 +46,6 @@ namespace Marathon_backend.Controllers
                 {
                     response.IsError = true;
                     response.ErrorMessage = "Invalid request";
-                    response.Message = "Failed";
                     return Ok(response);
                 }
                 else
@@ -80,9 +82,38 @@ namespace Marathon_backend.Controllers
                 userDbContext.registered_users.Add(entity);
                 await userDbContext.SaveChangesAsync();
                 response.IsError = false;
-               return Ok(response);
+                response.ErrorMessage = "user added successfully";
+                return Ok(response);
             }
             catch
+            {
+                response.IsError = true;
+                response.ErrorMessage = "An error occurred. Please contact the admin.";
+                return BadRequest(response);
+            }
+        }
+
+        [HttpPut("edit/{id}")]
+        public async Task<IActionResult> UpdateUser(int id, UserModel userModel)
+        {
+            ISingleModelResponse<UserModel> response = new SingleModelResponse<UserModel>();
+            try
+            {
+                var existingUser = await userDbContext.registered_users.FirstOrDefaultAsync(u => u.Id == id);
+                if (existingUser == null)
+                {
+                    response.IsError = true;
+                    response.ErrorMessage = "User not found";
+                    return NotFound(response);
+                }
+                existingUser.Time = userModel.Time;
+                await userDbContext.SaveChangesAsync();
+                response.IsError = false;
+                response.ErrorMessage = "time added";
+                return Ok(response);
+
+            }
+            catch (Exception)
             {
                 response.IsError = true;
                 response.ErrorMessage = "An error occurred. Please contact the admin.";

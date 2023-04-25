@@ -7,14 +7,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddEntityFrameworkMySQL()
     .AddDbContext<UserDbContext>(options =>
-    
+
         options.UseMySQL(builder.Configuration.GetConnectionString("ConnectionString")));
-    
+
 builder.Services.AddControllers();
-
-
 builder.Services.AddControllersWithViews();
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
 
@@ -28,16 +25,12 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseStaticFiles();
-
 app.UseRouting();
 app.UseMvc();
-
 app.UseAuthorization();
-
 app.Run("http://localhost:800");
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.UseCors();
