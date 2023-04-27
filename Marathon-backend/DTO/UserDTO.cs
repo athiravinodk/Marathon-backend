@@ -9,7 +9,6 @@
         public string Gender { get; set; }
         public string Category { get; set; }
         public long ContactNumber { get; set; }
-        public string Photo { get; set; }
         public int Time { get; set; }
 
     }

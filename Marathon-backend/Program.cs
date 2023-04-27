@@ -14,7 +14,15 @@ builder.Services.AddControllers();
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
-
+builder.Services.AddCors(option =>
+{
+    option.AddPolicy("MyPolicy", builder =>
+    {
+        builder.AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+    });
+});
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
@@ -33,4 +41,5 @@ app.Run("http://localhost:800");
 //    name: "default",
 //    pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.UseCors();
+app.UseCors("MyPolicy");
+app.UseAuthentication();

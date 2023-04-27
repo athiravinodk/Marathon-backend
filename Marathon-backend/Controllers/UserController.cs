@@ -2,6 +2,7 @@
 using Marathon_backend.DTO;
 using Marathon_backend.Entities;
 using Marathon_backend.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -109,9 +110,7 @@ namespace Marathon_backend.Controllers
                 existingUser.Time = userModel.Time;
                 await userDbContext.SaveChangesAsync();
                 response.IsError = false;
-                response.ErrorMessage = "time added";
                 return Ok(response);
-
             }
             catch (Exception)
             {
@@ -120,6 +119,29 @@ namespace Marathon_backend.Controllers
                 return BadRequest(response);
             }
         }
+     
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginDTO login)
+        {
+            try
+            {
+                var isAuthenticated = (login.Username == "admin" && login.Password == "admin123");
+                if (login == null)
+                {
+                    return BadRequest("Invalid credentials.");
+                }
+                if (!isAuthenticated)
+                {
+                    return BadRequest("Invalid credentials.");
+                }
+                return Ok(new { Message = "Authentication successful" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
 
     }
 }
