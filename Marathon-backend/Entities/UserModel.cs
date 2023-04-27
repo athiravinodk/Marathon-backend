@@ -13,6 +13,7 @@ namespace Marathon_backend.Entities
         public string Gender { get; set; }
         public string Category { get; set; }
         public long ContactNumber { get; set; }
+        public int Time { get; set; }
 
     }
 }

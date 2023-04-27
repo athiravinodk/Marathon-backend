@@ -2,10 +2,14 @@
 using Marathon_backend.DTO;
 using Marathon_backend.Entities;
 using Marathon_backend.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using MySql.Data.MySqlClient;
+using System.Data;
 using System.Net;
 
 namespace Marathon_backend.Controllers
@@ -21,7 +25,7 @@ namespace Marathon_backend.Controllers
         }
 
         [HttpGet("get")]
-         public async Task<ActionResult<List<UserDTO>>> Get()
+        public async Task<ActionResult<List<UserDTO>>> Get()
         {
             ISingleModelResponse<UserDbContext> response = new SingleModelResponse<UserDbContext>();
             try
@@ -43,7 +47,6 @@ namespace Marathon_backend.Controllers
                 {
                     response.IsError = true;
                     response.ErrorMessage = "Invalid request";
-                    response.Message = "Failed";
                     return Ok(response);
                 }
                 else
@@ -80,7 +83,8 @@ namespace Marathon_backend.Controllers
                 userDbContext.registered_users.Add(entity);
                 await userDbContext.SaveChangesAsync();
                 response.IsError = false;
-               return Ok(response);
+                response.ErrorMessage = "user added successfully";
+                return Ok(response);
             }
             catch
             {
@@ -89,6 +93,55 @@ namespace Marathon_backend.Controllers
                 return BadRequest(response);
             }
         }
+
+        [HttpPut("edit/{id}")]
+        public async Task<IActionResult> UpdateUser(int id, UserModel userModel)
+        {
+            ISingleModelResponse<UserModel> response = new SingleModelResponse<UserModel>();
+            try
+            {
+                var existingUser = await userDbContext.registered_users.FirstOrDefaultAsync(u => u.Id == id);
+                if (existingUser == null)
+                {
+                    response.IsError = true;
+                    response.ErrorMessage = "User not found";
+                    return NotFound(response);
+                }
+                existingUser.Time = userModel.Time;
+                await userDbContext.SaveChangesAsync();
+                response.IsError = false;
+                return Ok(response);
+            }
+            catch (Exception)
+            {
+                response.IsError = true;
+                response.ErrorMessage = "An error occurred. Please contact the admin.";
+                return BadRequest(response);
+            }
+        }
+     
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginDTO login)
+        {
+            try
+            {
+                var isAuthenticated = (login.Username == "admin" && login.Password == "admin123");
+                if (login == null)
+                {
+                    return BadRequest("Invalid credentials.");
+                }
+                if (!isAuthenticated)
+                {
+                    return BadRequest("Invalid credentials.");
+                }
+                return Ok(new { Message = "Authentication successful" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
 
     }
 }
